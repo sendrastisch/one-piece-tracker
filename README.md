@@ -1,6 +1,6 @@
 # One Piece Tracker 📺🏴‍☠️
 
-A Progressive Web App (PWA) built with **React**, **Vite**, and **Tailwind CSS** that allows you to track your progress through the *One Piece* anime series. The app fetches real-time data from the **AniList API** to keep everything in sync.
+A Progressive Web App (PWA) built with **React**, **Vite**, and **Tailwind CSS** that allows you to track my progress through the *One Piece* anime series. The app fetches real-time data from the **AniList API** to keep everything in sync.
 
 ---
 
