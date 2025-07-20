@@ -14,8 +14,8 @@ export default defineConfig({
               name: 'Sandras One Piece Progression',
               short_name: 'OP Sandra',
               description: 'Check Sandras One Piece Progression',
-              theme_color: '#e74c3c',
-              background_color: '#f1c40f',
+              theme_color: '#000000',
+              background_color: '#000000',
               display: 'standalone',
               orientation: 'portrait',
               icons: [

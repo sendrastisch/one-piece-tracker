@@ -7,9 +7,21 @@ function getCurrentArc(episode) {
     return arc ? arc.name : "Onbekende arc";
 }
 
+function convertDate(timestamp) {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleDateString("nl-NL", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+}
+
 const Counter = () => {
     const [episode, setEpisode] = useState(null);
     const [arc, setArc] = useState(null);
+    const [updatedAt, setUpdatedAt] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -25,6 +37,7 @@ const Counter = () => {
                   }
                 }
                 progress
+                updatedAt
               }
             }
           }
@@ -43,18 +56,22 @@ const Counter = () => {
 
                 const json = await response.json();
                 const onePieceProgress = json.data.MediaListCollection.lists[0].entries[0].progress;
+                const updatedAt = json.data.MediaListCollection.lists[0].entries[0].updatedAt;
 
                 if (onePieceProgress) {
                     setEpisode(onePieceProgress);
                     setArc(getCurrentArc(onePieceProgress));
+                    setUpdatedAt(updatedAt);
                 } else {
                     setEpisode(null);
                     setArc(null);
+                    setUpdatedAt(null);
                 }
             } catch (error) {
                 console.error("Fout bij ophalen One Piece progressie:", error);
                 setEpisode(null);
                 setArc(null);
+                setUpdatedAt(null);
             } finally {
                 setLoading(false);
             }
@@ -75,6 +92,7 @@ const Counter = () => {
         <section className="relative z-10 text-white font-fell text-6xl text-center m-1 mt-12 flex flex-col items-center justify-center">
             <p className="mb-1">{`${arc ?? "Arc onbekend"} Arc`}</p>
             <p className="text-9xl">{`Ep ${episode ?? "-"}`}</p>
+            <p className="text-xl">{`Last updated: ${convertDate(updatedAt)}`} </p>
         </section>
     );
 };
