@@ -9,6 +9,10 @@ export default defineConfig({
       react(),
       VitePWA({
           registerType: 'autoUpdate',
+          workbox: {
+              skipWaiting: true,
+              clientsClaim: true
+          },
           includeAssets: ['luffy.png'],
           manifest: {
               name: 'Sandras One Piece Progression',
